@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 0.5rem;
+}
+
+.statusInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.percentage {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #feb10b;
+}
+
+.deviceCount {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.activeCount {
+  color: #feb10b;
+  font-weight: 600;
+}
+
+.separator {
+  margin: 0 0.25rem;
+  color: #e9e9e9;
+  opacity: 0.5;
+}
+
+.totalCount {
+  color: #e9e9e9;
+  opacity: 0.7;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #feb10b;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.deviceGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.deviceIndicator {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.active {
+  background-color: #feb10b;
+  box-shadow: 0 0 10px rgba(254, 177, 11, 0.5);
+}
+
+.inactive {
+  background-color: #4a5e69;
+  opacity: 0.3;
+}
+

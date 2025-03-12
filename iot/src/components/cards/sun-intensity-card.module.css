@@ -1,0 +1,181 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 1rem;
+  
+}
+
+.visualization {
+  position: relative;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+}
+
+.sunIntensity {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  --intensity-color: #ffc107;
+}
+
+.sunCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--intensity-color);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--intensity-color);
+  animation: intensityPulse 2s infinite;
+}
+
+.sunRays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  animation: intensitySpin 10s linear infinite;
+}
+
+.sunRays:before,
+.sunRays:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 60px;
+  background-color: var(--intensity-color);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+
+.sunRays:after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.sunRays:before {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.heatWaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heatWave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--intensity-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: heatWave 3s infinite;
+}
+
+.valueContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e9e9e9;
+}
+
+.unit {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: #e9e9e9;
+  opacity: 0.7;
+}
+
+.intensityInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.intensityIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.intensityText {
+  font-size: 1rem;
+  color: #e9e9e9;
+  text-transform: capitalize;
+}
+
+.scale {
+  position: relative;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.scaleMarker {
+  position: absolute;
+  top: -20px;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+
+@keyframes intensityPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes intensitySpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes heatWave {
+  0% {
+    width: 60px;
+    height: 60px;
+    opacity: 0.7;
+  }
+  100% {
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+  }
+}
+

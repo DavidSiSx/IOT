@@ -1,0 +1,302 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 1rem;
+}
+
+.visualization {
+  position: relative;
+  height: 120px;
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weatherIcon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+/* Sunny weather animation */
+.sunny {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sunCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: #feb10b;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #feb10b;
+  animation: pulse 2s infinite;
+}
+
+.sunRays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  animation: spin 10s linear infinite;
+}
+
+.sunRays:before,
+.sunRays:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 60px;
+  background-color: #feb10b;
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+
+.sunRays:after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.sunRays:before {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+/* Cloudy weather animation */
+.cloudy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cloud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 30px;
+  background-color: #e9e9e9;
+  border-radius: 20px;
+  animation: float 4s infinite ease-in-out;
+}
+
+.cloud:before,
+.cloud:after {
+  content: "";
+  position: absolute;
+  background-color: #e9e9e9;
+  border-radius: 50%;
+}
+
+.cloud:before {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: 10px;
+}
+
+.cloud:after {
+  width: 25px;
+  height: 25px;
+  top: -10px;
+  right: 10px;
+}
+
+/* Rainy weather animation */
+.rainy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.raindrops {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.raindrop {
+  position: absolute;
+  width: 4px;
+  height: 10px;
+  background-color: #4a9be8;
+  border-radius: 2px;
+  animation: rain 1.5s infinite linear;
+  opacity: 0;
+}
+
+.raindrop:nth-child(1) {
+  left: 10%;
+}
+.raindrop:nth-child(2) {
+  left: 30%;
+}
+.raindrop:nth-child(3) {
+  left: 50%;
+}
+.raindrop:nth-child(4) {
+  left: 70%;
+}
+.raindrop:nth-child(5) {
+  left: 90%;
+}
+
+/* Stormy weather animation */
+.stormy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lightning {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 30px;
+  background-color: #ffeb3b;
+  clip-path: polygon(50% 0%, 0% 100%, 50% 70%, 100% 100%);
+  animation: flash 3s infinite;
+  opacity: 0;
+}
+
+/* Rain probability indicator */
+.rainInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.rainIcon {
+  width: 16px;
+  height: 16px;
+  background-color: #4a9be8;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  margin-right: 8px;
+}
+
+.rainProbability {
+  font-size: 1rem;
+  color: #e9e9e9;
+}
+
+.valueContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e9e9e9;
+}
+
+.unit {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  color: #e9e9e9;
+  opacity: 0.7;
+}
+
+.scale {
+  position: relative;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.scaleMarker {
+  position: absolute;
+  top: -20px;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-60%, -50%);
+  }
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  30% {
+    opacity: 1;
+  }
+  31% {
+    opacity: 0;
+  }
+  32%,
+  34% {
+    opacity: 1;
+  }
+  35%,
+  70% {
+    opacity: 0;
+  }
+}
+

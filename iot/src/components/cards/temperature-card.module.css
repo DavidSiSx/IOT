@@ -1,0 +1,71 @@
+.temperatureCard {
+
+}
+
+.iconContainer {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #feb10b;
+  font-size: 1.5rem;
+}
+
+.valueContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.value {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.unit {
+  font-size: 1.5rem;
+  margin-left: 0.25rem;
+  opacity: 0.8;
+}
+
+.trend {
+  margin-left: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.trendUp {
+  color: #d22512;
+}
+
+.trendDown {
+  color: #4a5e69;
+}
+
+.rangeContainer {
+  margin-top: auto;
+}
+
+.range {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.rangeFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+

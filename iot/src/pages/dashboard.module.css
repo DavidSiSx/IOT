@@ -1,0 +1,82 @@
+.dashboardContainer {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1a1a1a;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1800px;
+  margin: 0 auto;
+  height: calc(100vh - 120px); /* Adjust based on your topbar height */
+}
+
+.mapSection {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  min-height: 0; /* This is important for the map to render properly */
+}
+
+.rightSection {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.upperCards,
+.lowerCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapSection {
+    grid-row: auto;
+  }
+
+  .rightSection {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .upperCards,
+  .lowerCards {
+    grid-template-columns: 1fr;
+  }
+
+  .mainContent {
+    padding: 1rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+}
+
+.footer{
+    text-align: center;
+    border-top: 1px solid #fff;
+    width: 50%;
+    margin: 0 auto;
+  
+}

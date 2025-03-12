@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: background-color 0.2s ease;
+}
+
+.device:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.deviceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  margin-right: 0.75rem;
+}
+
+.deviceIcon.online {
+  background-color: rgba(254, 177, 11, 0.2);
+  color: #feb10b;
+}
+
+.deviceIcon.offline {
+  background-color: rgba(74, 94, 105, 0.2);
+  color: #4a5e69;
+}
+
+.deviceInfo {
+  flex: 1;
+}
+
+.deviceName {
+  font-weight: 500;
+  color: #e9e9e9;
+  margin-bottom: 0.25rem;
+}
+
+.deviceMeta {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.deviceType {
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+
+.deviceDot {
+  margin: 0 0.25rem;
+  opacity: 0.4;
+}
+
+.deviceStatus {
+  font-weight: 500;
+}
+
+.deviceStatus.online {
+  color: #feb10b;
+}
+
+.deviceStatus.offline {
+  color: #4a5e69;
+}
+
+.deviceLastActive {
+  font-size: 0.75rem;
+  color: #e9e9e9;
+  opacity: 0.6;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 0.75rem;
+  color: #e9e9e9;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.summaryValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #feb10b;
+}
+
