@@ -1,41 +1,72 @@
-import { Cpu, Thermometer, Droplets, Waves, Zap } from "lucide-react"
+import { Cpu, Thermometer, Droplets, Cloud, Sun } from "lucide-react"
 import Card from "./card"
+import type { Parcela } from "../../Services/Api"
 import styles from "./device-list-card.module.css"
 
 interface DeviceListCardProps {
   title: string
+  parcelas?: Parcela[]
 }
 
-// Sample device data
-const devices = [
-  { id: 1, name: "Sensor de Temperatura", type: "Sensor", status: "online", icon: Thermometer, lastActive: "Ahora" },
-  { id: 2, name: "Medidor de Humedad", type: "Sensor", status: "online", icon: Droplets, lastActive: "2m" },
-  { id: 3, name: "Controlador Central", type: "Hub", status: "online", icon: Cpu, lastActive: "Ahora" },
-  { id: 4, name: "Sensor de Movimiento", type: "Sensor", status: "offline", icon: Waves, lastActive: "1h" },
-  { id: 5, name: "Medidor Eléctrico", type: "Medidor", status: "online", icon: Zap, lastActive: "5m" },
-]
+export default function DeviceListCard({ title, parcelas = [] }: DeviceListCardProps) {
+  // Determinar el icono basado en el tipo de cultivo
+  const getIcon = (tipoCultivo: string) => {
+    switch (tipoCultivo.toLowerCase()) {
+      case "tomate":
+        return Thermometer
+      case "maíz":
+        return Sun
+      case "papa":
+        return Droplets
+      case "arroz":
+        return Cloud
+      default:
+        return Cpu
+    }
+  }
 
-export default function DeviceListCard({ title }: DeviceListCardProps) {
+  // Determinar el estado basado en la humedad
+  const getStatus = (humedad: number) => {
+    if (humedad > 60) return "online"
+    if (humedad > 30) return "warning"
+    return "offline"
+  }
+
+  // Calcular tiempo desde el último riego
+  const getLastActive = (ultimoRiego: string) => {
+    const riegoDate = new Date(ultimoRiego)
+    const now = new Date()
+    const diffMs = now.getTime() - riegoDate.getTime()
+    const diffMins = Math.floor(diffMs / 60000)
+
+    if (diffMins < 60) return `${diffMins}m`
+    if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h`
+    return `${Math.floor(diffMins / 1440)}d`
+  }
+
   return (
     <Card title={title} size="tall">
       <div className={styles.container}>
         <div className={styles.list}>
-          {devices.map((device) => {
-            const Icon = device.icon
+          {parcelas.map((parcela) => {
+            const Icon = getIcon(parcela.tipo_cultivo)
+            const status = getStatus(parcela.sensor.humedad)
             return (
-              <div key={device.id} className={styles.device}>
-                <div className={`${styles.deviceIcon} ${styles[device.status]}`}>
+              <div key={parcela.id} className={styles.device}>
+                <div className={`${styles.deviceIcon} ${styles[status]}`}>
                   <Icon size={18} />
                 </div>
                 <div className={styles.deviceInfo}>
-                  <div className={styles.deviceName}>{device.name}</div>
+                  <div className={styles.deviceName}>{parcela.nombre}</div>
                   <div className={styles.deviceMeta}>
-                    <span className={styles.deviceType}>{device.type}</span>
+                    <span className={styles.deviceType}>{parcela.tipo_cultivo}</span>
                     <span className={styles.deviceDot}>•</span>
-                    <span className={`${styles.deviceStatus} ${styles[device.status]}`}>{device.status}</span>
+                    <span className={`${styles.deviceStatus} ${styles[status]}`}>
+                      {status === "online" ? "Óptimo" : status === "warning" ? "Atención" : "Crítico"}
+                    </span>
                   </div>
                 </div>
-                <div className={styles.deviceLastActive}>{device.lastActive}</div>
+                <div className={styles.deviceLastActive}>{getLastActive(parcela.ultimo_riego)}</div>
               </div>
             )
           })}
@@ -43,15 +74,15 @@ export default function DeviceListCard({ title }: DeviceListCardProps) {
         <div className={styles.summary}>
           <div className={styles.summaryItem}>
             <span className={styles.summaryLabel}>Total</span>
-            <span className={styles.summaryValue}>{devices.length}</span>
+            <span className={styles.summaryValue}>{parcelas.length}</span>
           </div>
           <div className={styles.summaryItem}>
-            <span className={styles.summaryLabel}>Online</span>
-            <span className={styles.summaryValue}>{devices.filter((d) => d.status === "online").length}</span>
+            <span className={styles.summaryLabel}>Óptimo</span>
+            <span className={styles.summaryValue}>{parcelas.filter((p) => p.sensor.humedad > 60).length}</span>
           </div>
           <div className={styles.summaryItem}>
-            <span className={styles.summaryLabel}>Offline</span>
-            <span className={styles.summaryValue}>{devices.filter((d) => d.status === "offline").length}</span>
+            <span className={styles.summaryLabel}>Crítico</span>
+            <span className={styles.summaryValue}>{parcelas.filter((p) => p.sensor.humedad <= 30).length}</span>
           </div>
         </div>
       </div>

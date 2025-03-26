@@ -27,6 +27,11 @@ export default function HumidityCard({ title, value, unit, icon }: HumidityCardP
                 <span className={styles.unit}>{unit}</span>
               </span>
             </div>
+            <div className={styles.droplets}>
+              <div className={styles.droplet} style={{ animationDelay: "0s" }}></div>
+              <div className={styles.droplet} style={{ animationDelay: "1s" }}></div>
+              <div className={styles.droplet} style={{ animationDelay: "2s" }}></div>
+            </div>
           </div>
           <div className={styles.gaugeMarkers}>
             <span>0</span>

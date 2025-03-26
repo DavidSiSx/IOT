@@ -7,9 +7,10 @@ interface NetworkCardProps {
   status: string
   signal: number
   icon?: ReactNode
+  lastUpdate?: string
 }
 
-export default function NetworkCard({ title, status, signal, icon }: NetworkCardProps) {
+export default function NetworkCard({ title, status, signal, icon, lastUpdate }: NetworkCardProps) {
   // Generate signal bars
   const signalBars = Array.from({ length: 5 }, (_, i) => {
     const isActive = i < signal
@@ -48,12 +49,12 @@ export default function NetworkCard({ title, status, signal, icon }: NetworkCard
 
         <div className={styles.networkInfo}>
           <div className={styles.networkItem}>
-            <div className={styles.networkLabel}>SSID</div>
-            <div className={styles.networkValue}>IOT_NETWORK</div>
+            <div className={styles.networkLabel}>API</div>
+            <div className={styles.networkValue}>moriahmkt.com/iotapp</div>
           </div>
           <div className={styles.networkItem}>
-            <div className={styles.networkLabel}>IP</div>
-            <div className={styles.networkValue}>192.168.1.105</div>
+            <div className={styles.networkLabel}>Última actualización</div>
+            <div className={styles.networkValue}>{lastUpdate || "Desconocido"}</div>
           </div>
         </div>
       </div>

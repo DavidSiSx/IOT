@@ -70,6 +70,17 @@ export default function TemperatureCard({
           </div>
         </div>
       )}
+
+      <div className={styles.thermometer}>
+        <div
+          className={styles.thermometerFill}
+          style={{
+            height: `${((value - min) / (max - min)) * 100}%`,
+            backgroundColor: getTemperatureColor(),
+          }}
+        />
+        <div className={styles.thermometerBulb} style={{ backgroundColor: getTemperatureColor() }} />
+      </div>
     </Card>
   )
 }

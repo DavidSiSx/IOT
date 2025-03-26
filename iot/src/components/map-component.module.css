@@ -1,0 +1,181 @@
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.marker {
+  width: 24px;
+  height: 24px;
+  background-color: #3b82f6;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.marker:hover {
+  transform: scale(1.2);
+  background-color: #2563eb;
+}
+
+.selectedMarker {
+  width: 28px !important;
+  height: 28px !important;
+  background-color: #f97316 !important;
+  border: 3px solid white !important;
+  transform: scale(1.2) !important;
+  z-index: 10;
+}
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.modalTitle {
+  margin: 0;
+  padding: 20px 20px 15px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modalContent {
+  padding: 20px;
+}
+
+.infoSection {
+  margin-bottom: 24px;
+}
+
+.infoItem {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.infoValue {
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.sensorSection {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 20px;
+}
+
+.sensorTitle {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.sensorGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sensorItem {
+  background-color: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sensorLabel {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.sensorValue {
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sensorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    width: 95%;
+  }
+}
+
